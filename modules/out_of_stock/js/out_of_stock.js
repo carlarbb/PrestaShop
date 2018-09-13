@@ -9,10 +9,27 @@ $(document).ready(function() {
             data: { product_id: $(this).data('productId') },
         }).done(function(data) {
             if (data == 1) {
-                productRow.append('<form class=\"form_stock\" style="text-align:center;"> <input type=\"checkbox\" name=\"out_of_stock\" style=\"width:30px; height:30px;\" checked> </form>');
+                productRow.append('<td class=\"text-center\"> <input type=\"checkbox\" class=\"out_of_stock\" style=\"width:30px; height:30px;\" data-productid=\"' + productRow.data('productId') + '\" checked> </td>');
             } else {
-                productRow.append('<form class=\"form_stock\" style="text-align:center;"> <input type=\"checkbox\" name=\"out_of_stock\" style=\"width:30px; height:30px;\"> </form>');
+                productRow.append('<td class=\"text-center\"> <input type=\"checkbox\" class=\"out_of_stock\" style=\"width:30px; height:30px;\" data-productid=\"' + productRow.data('productId') + '\"> </td>');
             }
         });
+    });
+});
+
+$(document).on('click', '.out_of_stock', function() {
+    var send_info;
+    if ($(this).is(':checked')) send_info = 1;
+    else send_info = 0;
+    $.ajax({
+        type: "GET",
+        url: linkToController,
+        data: {
+            change_stock: send_info,
+            checkboxProdId: $(this).data("productid")
+        }
+    }).done(function(data) {
+        if (data) alert('success');
+        else alert('failure');
     });
 });

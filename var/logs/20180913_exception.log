@@ -1,0 +1,1 @@
+*ERROR* 	v1.7.4.2	2018/09/13 - 05:35:07: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'UPDATEps_product SET out_of_stock=1WHERE id_product = 19' at line 1<br /><br /><pre>UPDATEps_product SET out_of_stock=1WHERE id_product = 19</pre> at line 746 in file classes/db/Db.php

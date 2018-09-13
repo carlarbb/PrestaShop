@@ -30,16 +30,11 @@ class Out_Of_Stock extends Module
         if (Shop::isFeatureActive())
         Shop::setContext(Shop::CONTEXT_ALL); //pentru mai multe shop-uri
 
-        Db::getInstance()->execute('CREATE TABLE IF NOT EXISTS `' . _DB_PREFIX_ . 'out_of_stock` (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
-            `id_product` int(11) NOT NULL,
-            `date_add` datetime NOT NULL,
-            PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
-        ');
+        Db::getInstance()->execute('ALTER TABLE ' . _DB_PREFIX_ .'product ADD out_of_stock int DEFAULT 0;');
 
         if (!parent::install() ||
-            !$this->registerHook('displayBackOfficeHeader')
+            !$this->registerHook('displayBackOfficeHeader') ||
+            !$this->registerHook('actionOnImageCutAfter')
             )
             return false;
         return true;
@@ -51,5 +46,18 @@ class Out_Of_Stock extends Module
         }
         return $this->display(__FILE__, 'sendControllerLink.tpl');
         //dump($this->context->link->getModuleLink('out_of_stock', 'display')); die;
+    }
+
+    public function uninstall()
+    {
+        if (!parent::uninstall())
+            return false;
+
+        Db::getInstance()->execute('ALTER TABLE ' . _DB_PREFIX_ .'product DROP COLUMN out_of_stock;');
+		return	true; 
+    }
+
+    public function hookActionOnImageCutAfter($params) {
+        dump($params); die;
     }
 }
