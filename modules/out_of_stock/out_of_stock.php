@@ -34,7 +34,8 @@ class Out_Of_Stock extends Module
 
         if (!parent::install() ||
             !$this->registerHook('displayBackOfficeHeader') ||
-            !$this->registerHook('actionOnImageCutAfter')
+            !$this->registerHook('actionOnImageCutAfter') ||
+            !$this->registerHook('displayProductPriceBlock')
             )
             return false;
         return true;
@@ -48,6 +49,16 @@ class Out_Of_Stock extends Module
         //dump($this->context->link->getModuleLink('out_of_stock', 'display')); die;
     }
 
+    public function hookDisplayProductPriceBlock($params){
+        $productId = $params['product']['id_product'];
+
+        if($params['type'] == 'unit_price'){
+            $dbProductOutOfStock = Db::getInstance()->executeS('SELECT out_of_stock FROM ' . _DB_PREFIX_ .'product WHERE id_product='.$productId.';');
+            if($dbProductOutOfStock[0]['out_of_stock'] == 1){
+                return $this->display(__FILE__, 'out_of_stock_text.tpl');
+            }
+        }
+    }
     public function uninstall()
     {
         if (!parent::uninstall())

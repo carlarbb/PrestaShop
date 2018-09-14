@@ -672,7 +672,7 @@ abstract class ControllerCore
             $controller = get_class($this);
         }
 
-        if ($method === null) {
+        if ($method === null) { 
             $bt = debug_backtrace();
             $method = $bt[1]['function'];
         }

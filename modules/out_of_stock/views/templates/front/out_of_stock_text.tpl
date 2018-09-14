@@ -1,0 +1,1 @@
+<p style="color:red; font-weight:bold;">Out of stock</p>

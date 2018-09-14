@@ -157,7 +157,6 @@ class HashMapWhitelistFilter implements FilterInterface
     {
         // keep whitelisted items
         $subject = array_intersect_key($subject, $this->whitelistItems);
-
         // run nested filters
         foreach ($this->filters as $key => $filter) {
             if (array_key_exists($key, $subject)) {
