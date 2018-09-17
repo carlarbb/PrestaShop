@@ -159,6 +159,7 @@ class HashMapWhitelistFilter implements FilterInterface
         $subject = array_intersect_key($subject, $this->whitelistItems);
         // run nested filters
         foreach ($this->filters as $key => $filter) {
+
             if (array_key_exists($key, $subject)) {
                 $subject[$key] = $filter->filter($subject[$key]);
             }
@@ -180,7 +181,6 @@ class HashMapWhitelistFilter implements FilterInterface
         $keyToWhitelist = $paramValue;
         if ($paramValue instanceof FilterInterface) {
             $this->filters[$paramKey] = $paramValue;
-
             $keyToWhitelist = $paramKey;
         }
 

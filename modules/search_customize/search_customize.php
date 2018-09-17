@@ -77,31 +77,41 @@ class Search_Customize extends Module
 
     public function hookActionProductSearchAfter($params) 
     { 
-        $search = $params;
-        $rendered_products_top = $this->render('catalog/_partials/products-top', array('listing' => $search));
-        $rendered_products = $this->render('catalog/_partials/products', array('listing' => $search));
-        $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', array('listing' => $search));
+        if($this->context->controller->ajax){
+            $search = $params;
+            $rendered_products_top = $this->render('catalog/_partials/products-top', array('listing' => $search));
+            $rendered_products = $this->render('catalog/_partials/products', array('listing' => $search));
+            $rendered_products_bottom = $this->render('catalog/_partials/products-bottom', array('listing' => $search));
 
-        $data = array_merge(
-            array(
-                'rendered_products_top' => $rendered_products_top,
-                'rendered_products' => $rendered_products,
-                'rendered_products_bottom' => $rendered_products_bottom,
-            ),
-            $search
-        );
-        if (!empty($data['products']) && is_array($data['products'])) {
-            $data['products'] = $this->prepareProductArrayForAjaxReturn($data['products']);
+            $data = array_merge(
+                array(
+                    'rendered_products_top' => $rendered_products_top,
+                    'rendered_products' => $rendered_products,
+                    'rendered_products_bottom' => $rendered_products_bottom,
+                ),
+                $search
+            );
+            if (!empty($data['products']) && is_array($data['products'])) {
+                $data['products'] = $this->prepareProductArrayForAjaxReturn($data['products']);
+            }
+            die(json_encode($data));
         }
-        dump($data);
-        die(json_encode($data));
     }
 
+    //functie de filtrare manuala
     public function prepareProductArrayForAjaxReturn($products){
+       
         $filter = new SearchFilter();
-        dump($products);
-        dump($filter->filter($products));
-        return $filter->filter($products);
+         foreach($products as $ind => $product){
+            $new_product = [];
+            foreach($filter->whitelist as $key){
+                if (array_key_exists($key, $product)) {
+                    $new_product = array_merge($new_product, [$key => $product[$key]]);
+                }
+            }
+            $products[$ind] = $new_product;
+        }
+        return $products;
     }
 
     public function hookActionAjaxDieSearchControllerdoProductSearchBefore($params){

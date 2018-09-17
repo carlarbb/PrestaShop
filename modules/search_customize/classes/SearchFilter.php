@@ -34,9 +34,10 @@ use PrestaShop\PrestaShop\Core\Filter\HashMapWhitelistFilter;
  */
 class SearchFilter extends HashMapWhitelistFilter
 {
+    public $whitelist;
     public function __construct()
     {
-        $whitelist = array(
+        $this->whitelist = array(
             'active',
             'add_to_cart_url',
             'canonical_url',
@@ -67,7 +68,5 @@ class SearchFilter extends HashMapWhitelistFilter
             'url',
             'category_name'
         );
-
-        $this->whitelist($whitelist);
     }
 }
