@@ -17,6 +17,7 @@ $(document).ready(function() {
     });
 });
 
+//onclick pe elemente create dinamic
 $(document).on('click', '.out_of_stock', function() {
     var send_info;
     if ($(this).is(':checked')) send_info = 1;

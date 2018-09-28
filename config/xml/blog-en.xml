@@ -6,6 +6,14 @@
     <language>en</language>
      <atom:link href="https://www.prestashop.com/en/blog/feed.xml" rel="self" type="application/rss+xml" />
       <item>
+    <title>What is Social Shopping and How it Will Affect E-commerce in China</title>
+    <link>https://www.prestashop.com/en/blog/what-is-social-shopping-ecommerce-china</link>
+    <description>If you are not yet familiar with the term Social shopping, get ready to hear a lot about it.</description>
+     <pubDate>Tue, 18 Sep 2018 16:54:00 +0200</pubDate>
+ <dc:creator>JasonBlondeau</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/en/blog/what-is-social-shopping-ecommerce-china</guid>
+  </item>
+  <item>
     <title>How to Use Ecommerce Data to Understand Customer Behavior</title>
     <link>https://www.prestashop.com/en/blog/ecommerce-data-to-understand-customer-behavior</link>
     <description>Understanding customer behavior is one of the best ways to create an ecommerce strategy around customer satisfaction.</description>
@@ -77,16 +85,6 @@ How many times have you been browsing a site, found the perfect item, and looked
      <pubDate>Mon, 23 Jul 2018 10:21:51 +0200</pubDate>
  <dc:creator>camille.teissier</dc:creator>
  <guid isPermaLink="false">https://www.prestashop.com/en/blog/how-to-contribute-to-prestashop-project</guid>
-  </item>
-  <item>
-    <title>Meet Cyril and Edouard, Ambassadors of the month | July 2018</title>
-    <link>https://www.prestashop.com/en/blog/ambassadors-cyril-edouard-paris</link>
-    <description>About you
-Three words to best describe you:
-Edouard: “dithyrambique”. @dithyrambique it’s my name on Instagram @dithyrambique and it’s a real state of mind.</description>
-     <pubDate>Fri, 20 Jul 2018 00:00:00 +0200</pubDate>
- <dc:creator>MLNielsen</dc:creator>
- <guid isPermaLink="false">https://www.prestashop.com/en/blog/ambassadors-cyril-edouard-paris</guid>
   </item>
   </channel>
 </rss>

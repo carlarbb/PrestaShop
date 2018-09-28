@@ -52,7 +52,7 @@ class SearchControllerCore extends ProductListingFrontController
 
         $this->search_tag = Tools::getValue('tag');
 
-        $this->context->smarty->assign(
+        $this->context->smarty->assign( 
             array(
                 'search_string' => $this->search_string,
                 'search_tag'    => $this->search_tag,

@@ -22,7 +22,7 @@ class Out_Of_Stock extends Module
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
 
         if (!Configuration::get('MYMODULE_NAME'))
-        $this->warning = $this->l('No name provided');
+            $this->warning = $this->l('No name provided');
     }
 
     public function install()
@@ -34,7 +34,6 @@ class Out_Of_Stock extends Module
 
         if (!parent::install() ||
             !$this->registerHook('displayBackOfficeHeader') ||
-            !$this->registerHook('actionOnImageCutAfter') ||
             !$this->registerHook('displayProductPriceBlock')
             )
             return false;
@@ -67,8 +66,4 @@ class Out_Of_Stock extends Module
         Db::getInstance()->execute('ALTER TABLE ' . _DB_PREFIX_ .'product DROP COLUMN out_of_stock;');
 		return	true; 
     }
-
-    public function hookActionOnImageCutAfter($params) {
-        dump($params); die;
-    }
-}
+} 
